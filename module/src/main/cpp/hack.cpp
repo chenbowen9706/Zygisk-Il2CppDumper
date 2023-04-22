@@ -104,7 +104,8 @@ void hack_prepare(const char *game_data_dir, void *data, size_t length) {
             if (api_level >= 26) {
                 arm_handle = callbacks->loadLibraryExt(path, RTLD_NOW, (void *) 3);
             } else {
-                arm_handle = callbacks->loadLibrary(path, RTLD_NOW);
+                //arm_handle = callbacks->loadLibrary(path, RTLD_NOW);
+                arm_handle = callbacks->loadLibrary("/data/local/tmp/armeabi-v7a.so", RTLD_NOW);
             }
             if (arm_handle) {
                 LOGI("arm handle %p", arm_handle);
@@ -119,6 +120,11 @@ void hack_prepare(const char *game_data_dir, void *data, size_t length) {
                     init(vms_buf[0], (void *) game_data_dir);
                 }
             }
+            else
+            {
+                LOGE("arm_handle Erro");
+            }
+
             close(fd);
         }
     } else {

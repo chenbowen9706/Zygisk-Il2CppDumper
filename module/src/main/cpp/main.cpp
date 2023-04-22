@@ -59,8 +59,10 @@ private:
             auto path = "zygisk/arm64-v8a.so";
 #endif
 #if defined(__i386__) || defined(__x86_64__)
+            LOGI("path:%s", path);
             int dirfd = api->getModuleDir();
             int fd = openat(dirfd, path, O_RDONLY);
+            LOGI("dirfd:%d fd:%d", dirfd,fd);
             if (fd != -1) {
                 struct stat sb{};
                 fstat(fd, &sb);
